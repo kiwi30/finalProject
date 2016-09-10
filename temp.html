@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html ng-app="travelApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TravelAnytime is one of the biggest company is the world for right choosing of country  to visit"/>
+    <meta name="keywords" content="travel, world, cities, europe">
+    <meta name="author" content="Ryabchuk Ruslana">
+    <meta name="copyright" content="All rights reserved by Ryabchuk Ruslana">
+    <title>TravelAnytime</title>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="css/user.css">-->
+    <!--<link rel="stylesheet" href="css/registrForm.css">-->
+    <!--<link rel="stylesheet" href="css/news.css">-->
+    <!--<link rel="stylesheet" href="css/table.css">-->
+    <!--<link rel="stylesheet" href="css/footer.css">-->
+    <!--<link rel="stylesheet" href="css/navbar.css">-->
+    <!--<link rel="stylesheet" href="css/reviews.css">-->
+
+    <link rel="stylesheet/less" type="text/css" href="less/style.less" />
+    <link rel="stylesheet/less" type="text/css" href="less/news.less" />
+    <link rel="stylesheet/less" type="text/css" href="less/navbar.less" />
+    <link rel="stylesheet/less" type="text/css" href="less/footer.less" />
+    <link rel="stylesheet/less" type="text/css" href="less/table.less" />
+    <link rel="stylesheet/less" type="text/css" href="less/reviews.less" />
+    <link rel="stylesheet/less" type="text/css" href="less/registrForm.less" />
+
+    <link rel="stylesheet" href="vendor/bootstrap/fonts/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet"></head>
+
+<body ng-controller="TravelController" ng-init="initUser()">
+<nav class="navbar navbar-default navbar-fixed-top" id="myNavbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar-link" href="#"  style="display:inline; padding-top:5px;">
+                <img style="float:left;" src="img/logo2.png" width="120px">
+            </a>
+    </div>
+        <div class="image"></div>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active" role="presentation"><a href="#main">Main info</a></li>
+                <li role="presentation"><a href="#news">News</a></li>
+                <li role="presentation"><a href="#tours">Tours</a></li>
+                <li role="presentation"><a href="#reviews">Reviews</a></li>
+                <li role="presentation"><a href="#subscribe">Subscribe us</a></li>
+                <li ng-show="result == null || result.username == '' "><a href="#" class="action-button shadow animate green" data-toggle="modal"
+                       data-target="#login-modal"
+                       aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
+                </li>
+                <li ng-hide="result == null || result.username == ''"><a href="#" class="action-button shadow animate green" ng-click="logout()">Logout</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div data-spy="scroll">
+    <div class="container-fluid main" id="main">
+        <div id="myCarousel" class="carousel slide hidden-xs" data-ride="carousel"<!-- data-interval="5000"-->>
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner" role="listbox">
+                <div class="active item">
+                    <div class="fill" style="background-image:url(img/city.jpg); box-shadow:0 0 0 400px rgba(0, 0, 0, 0.33) inset;">
+                        <div class="text3">
+                            <h1 style="color: white;"> Perfect your dream vacation</h1>
+                            <h2 style="color: white;"> <p>Travel to the four corners of the world,</p>
+                                <p>without going around in circles.</p></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="fill" style="background-image:url(img/lion.jpg);box-shadow:0 0 0 400px rgba(0, 0, 0, 0.33) inset;">
+                        <div class="text2">
+                            <h1 style="color: white;"><p>Extraordinary experiences, designed</p>
+                            <p>just for you</p></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="fill" style="background-image:url(img/3.jpg);box-shadow:0 0 0 400px rgba(0, 0, 0, 0.33) inset;">
+                        <div class="container">
+                            <div class="text" style="padding-left: 150px;padding-top: 100px;">
+                                <h1 style="color: white;"><p>Inspiring, Beautiful, Breathtaking... </p><p>Live Moments from around the world</p></h1>
+                                <h3 style="color: white;"><p>Our Travel Directors - helping us to celebrate everything </p>
+                                    <p>that is inspiring, beautiful, breathtaking, stunning & unforgettable on our trips</p></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+    <section class="testimonials" id="news" ng-init="init()">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>What's new in the world?</h1>
+                </div>
+                <div class="col-md-4 text-center" ng-repeat="news in newsList | limitTo: 3">
+                        <div class="box">
+                            <div class="box-content">
+                                <h1 class="tag-title">{{news.title}}</h1>
+                                <hr />
+                                <p>{{news.short}}</p>
+                                <br />
+                                <a href="" class="btn btn-block btn-info" data-toggle="modal" data-target="#newsModal"
+                                   ng-click="initNewsModal(news.title,news.text)">Learn more</a>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center" style="margin: 50px 0px;">
+                    <button type="button" class="btn btn-lg btn-primary btn-huge" data-toggle="modal" data-target="#allNewsModal">See all news</button>
+                </div>
+            </div>
+        </div>
+        <!-- News modal -->
+        <div id="newsModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{newsFull.title}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{newsFull.fullText}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--  END-->
+        <!-- ALL News modal -->
+        <div id="allNewsModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">All news</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center" ng-repeat="news in newsList">
+                            <div class="box">
+                                <div class="box-content">
+                                    <h1 class="tag-title">{{news.title}}</h1>
+                                    <hr />
+                                    <p>{{news.short}}</p>
+                                    <br />
+                                    <a href="" class="btn btn-block btn-info" data-toggle="modal" data-target="#newsModal"
+                                       ng-click="initNewsModal(news.title,news.text)">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--  END-->
+        <!-- LOGIN MODAL WINDOW -->
+        <div class="modal fade dialog-position" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="outPopUp">
+                            <div class="panel panel-login">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <a href="#" class="active" id="login-form-link">Login</a>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <a href="#" id="register-form-link">Register</a>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <form id="login-form"
+                                                  role="form" style="display: block;">
+                                                <div class="form-group">
+                                                    <input type="text" name="username" id="username" tabindex="1"ng-model="loginData.username"
+                                                           class="form-control" placeholder="Username" value="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="password" id="password" tabindex="2" ng-model="loginData.password"
+                                                           class="form-control" placeholder="Password">
+                                                </div>
+                                                <div class="form-group text-center">
+                                                    <input type="checkbox" tabindex="3" class="" ng-model="loginData.rememberMe" name="remember" id="remember">
+                                                    <label for="remember"> Remember Me</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                            <input type="submit" name="login-submit" id="login-submit"
+                                                                   tabindex="4" class="form-control btn btn-login"
+                                                                   ng-click="login()"data-toggle="modal"
+                                                                   data-target="#login-modal"
+                                                                   aria-expanded="false"
+                                                                   value="Log In">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="text-center">
+                                                                <a href="#" tabindex="5"
+                                                                   class="forgot-password">Forgot Password?</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <form id="register-form"
+                                                  role="form" style="display: none;">
+                                                <div class="form-group">
+                                                    <input type="text" name="username" id="username" tabindex="1"
+                                                           class="form-control" placeholder="Username"
+                                                           ng-model="registerUser.username">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" name="email" id="email" tabindex="1"
+                                                           class="form-control" placeholder="Email Address"
+                                                           ng-model="registerUser.email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="phone" name="phone2" id="phone2" tabindex="1"
+                                                           class="form-control" placeholder="Phone"
+                                                           ng-model="registerUser.phone">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="password" id="password" tabindex="2"
+                                                           class="form-control" placeholder="Password"
+                                                           ng-model="registerUser.password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="confirm-password" id="confirm-password"
+                                                           tabindex="2" class="form-control" placeholder="Confirm Password"
+                                                           ng-model="registerUser.confirmPassword">
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                            <input type="submit" name="register-submit" id="register-submit"
+                                                                   tabindex="4" class="form-control btn btn-register"
+                                                                   ng-click="register()"data-toggle="modal"
+                                                                   data-target="#login-modal"
+                                                                   aria-expanded="false"
+                                                                   value="Register Now">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <a href="#" tabindex="5"
+                                                       class="forgot-password" data-toggle="modal"
+                                                       data-target="#login-modal"
+                                                       aria-expanded="false" aria-controls="nav-collapse2">No, thanks</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  END-->
+    </section>
+
+    <section class="testimonials" id="tours"  style="background-image: url(img/sea.jpg); padding: 50px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12 text-center" style="margin-bottom: 50px;">
+                            <h1 style="font-size: 40px; color: wheat;">Find the hottest tours!</h1>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table st-table="rowCollection" class="table table-striped" style="background-color: #988eff; text-align: center;">
+                            <thead>
+                            <tr >
+                                <th st-ratio="33" st-sort="from" st-sort-default="{{parameters.sort == 'from'}}" style="text-align: center;">From</th>
+                                <th st-ratio="33" st-sort="to" st-sort-default="{{parameters.sort == 'to'}}" style="text-align: center;">To</th>
+                                <th st-ratio="33" st-sort="price" st-sort-default="{{parameters.sort == 'price'}}"  style="text-align: center;">price</th>
+                            </tr>
+                            <tr>
+                                <th colspan="2">
+                                    <input st-search placeholder="search all" ng-value="parameters.filter" class="input-sm form-control"
+                                           type="search"/>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody style="background-color: lightblue;">
+                            <tr ng-repeat="row in rowCollection">
+                                <td st-ratio="33">{{row.from}}</td>
+                                <td st-ratio="33">{{row.to}}</td>
+                                <td st-ratio="33">{{row.price | currency}}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <div st-items-by-page="parameters.perPage" st-pagination="" st-template="pagination.custom.html"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="reviews">
+        <div class="[ container text-center ]">
+            <div class="[ row ]">
+                <div class="col-md-12 text-center">
+                    <h1>The people who know best</h1>
+                </div>
+                <div class="[ col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 ]" role="tabpanel">
+                    <div class="[ col-xs-4 col-sm-12 ]">
+                        <!-- Nav tabs -->
+                        <ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                                    <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dustinlamont/128.jpg" />
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                                    <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dakshbhagya/128.jpg" />
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                                    <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/annapickard/128.jpg" />
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                                    <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/waferbaby/128.jpg" />
+                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="[ col-xs-8 col-sm-12 ]">
+                        <!-- Tab panes -->
+                        <div class="tab-content" id="tabs-collapse">
+                            <div role="tabpanel" class="tab-pane fade in active" id="dustin">
+                                <div class="tab-inner">
+                                    <p class="lead">{{reviews[0].test}}</p>
+                                    <hr>
+                                    <p><strong class="text-uppercase">{{reviews[0].user}}</strong></p>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="daksh">
+                                <div class="tab-inner">
+                                    <p class="lead">{{reviews[1].test}}</p>
+                                    <hr>
+                                    <p><strong class="text-uppercase">{{reviews[1].user}}</strong></p>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="anna">
+                                <div class="tab-inner">
+                                    <p class="lead">{{reviews[2].test}}</p>
+                                    <hr>
+                                    <p><strong class="text-uppercase">{{reviews[2].user}}</strong></p>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="wafer">
+                                <div class="tab-inner">
+                                    <p class="lead">{{reviews[3].test}}</p>
+                                    <hr>
+                                    <p><strong class="text-uppercase">{{reviews[3].user}}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="subscribe"  style="background-color: #A0F6D2; padding: 50px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-success btn-lg btn-huge" data-toggle="modal" data-target="#subscribeModal">Subscribe us</button>
+                </div>
+            </div>
+        </div>
+        <!-- Subscribe modal -->
+        <div class="modal fade dialog-position" id="subscribeModal" tabindex="-1" role="dialog" aria-labelledby="subscribeModal"
+        aria-hidden="true" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="outPopUp">
+                        <div class="panel panel-login">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4 style="text-align: center;">Subscribe for newsletter</h4>
+                                        <form id="subscribe-form"
+                                              role="form">
+                                            <div class="form-group">
+                                                <input type="text" name="username" id="username2" tabindex="1"
+                                                       class="form-control" placeholder="Username"
+                                                       >
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" name="email" id="email2" tabindex="1"
+                                                       class="form-control" placeholder="Email Address"
+                                                       >
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="phone" name="password" id="phone" tabindex="2"
+                                                       class="form-control" placeholder="Phone"
+                                                       >
+                                            </div>
+                                            <div class="form-group text-center">
+                                                <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                                <label for="remember"> I accept the rules</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit" name="register-submit" id="submit"
+                                                               tabindex="4" class="form-control btn btn-register subscribe" data-target="#subscribeModal"
+                                                               aria-expanded="false" aria-controls="nav-collapse2" data-toggle="modal"
+                                                               value="Just do it!">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <a href="#" tabindex="5" data-toggle="modal"
+                                                       data-target="#subscribeModal"  class="subscribe"
+                                                       aria-expanded="false" aria-controls="nav-collapse2">Not now :(</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!--  END-->
+    </section>
+    <section id="footer" style="background-color: #03414D; padding: 50px 0px;">
+        <div class="container">
+            <div class="row footer">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-3">
+                    <ul class="list-unstyled">
+                        <li>Content<li>
+                        <li><a href="#main">Main information</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#tours">Hottest tours</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#subscribe">Subscribe us</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-3">
+                    <ul class="list-unstyled">
+                        <li>Countrys<li>
+                        <li><a href="#">Cyprus</a></li>
+                        <li><a href="#">Turkey</a></li>
+                        <li><a href="#">Italia</a></li>
+                        <li><a href="#">France</a></li>
+                        <li><a href="#">Spain</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-3">
+                    <ul class="list-unstyled">
+                        <li>About us<li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Our partners</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Copyright © JustTravel 2016. All rights reserved</h4>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </footer>
+
+</div>
+<!-- The scroll to top feature -->
+<div class="scroll-top-wrapper " style="background-color: #D65F5F;">
+  <span class="scroll-top-inner">
+    <i class="fa fa-2x fa-arrow-circle-up"></i>
+  </span>
+</div>
+
+
+
+<script src="vendor/jquery.min.js"></script>
+<script type="text/javascript" src="vendor/jquery.leanModal.min.js"></script>
+<script type="text/javascript" src="vendor/jquery.touchSwipe.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="app/js/script.js"></script>
+
+<script src="node_modules/angular/angular.js"></script>
+<script src="node_modules/angular-cookies/angular-cookies.js"></script>
+<script src="node_modules/angular-smart-table/dist/smart-table.js"></script>
+
+<script src="app/js/app_angular.js"></script>
+<script src="vendor/less.min.js"></script>
+
+<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'grunt',
+1 verbose cli   '—save-dev' ]
+2 info using npm@3.10.3
+3 info using node@v6.3.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData grunt@0.4.5
+8 silly fetchPackageMetaData —save-dev
+9 silly fetchNamedPackageData grunt
+10 silly mapToRegistry name grunt
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry data Result {
+13 silly mapToRegistry   raw: 'grunt',
+13 silly mapToRegistry   scope: null,
+13 silly mapToRegistry   escapedName: 'grunt',
+13 silly mapToRegistry   name: 'grunt',
+13 silly mapToRegistry   rawSpec: '',
+13 silly mapToRegistry   spec: 'latest',
+13 silly mapToRegistry   type: 'tag' }
+14 silly mapToRegistry uri https://registry.npmjs.org/grunt
+15 silly fetchOtherPackageData —save-dev
+16 silly cache add args [ '—save-dev', null ]
+17 verbose cache add spec —save-dev
+18 silly cache add parsed spec Result {
+18 silly cache add   raw: '—save-dev',
+18 silly cache add   scope: null,
+18 silly cache add   escapedName: null,
+18 silly cache add   name: null,
+18 silly cache add   rawSpec: '—save-dev',
+18 silly cache add   spec: 'C:\\Users\\Ursya\\Desktop\\finalProject\\—save-dev',
+18 silly cache add   type: 'local' }
+19 error addLocal Could not install C:\Users\Ursya\Desktop\finalProject\—save-dev
+20 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open 'C:\Users\Ursya\Desktop\finalProject\—save-dev'
+20 silly fetchPackageMetaData     at Error (native)
+20 silly fetchPackageMetaData  error for —save-dev { Error: ENOENT: no such file or directory, open 'C:\Users\Ursya\Desktop\finalProject\—save-dev'
+20 silly fetchPackageMetaData     at Error (native)
+20 silly fetchPackageMetaData   errno: -4058,
+20 silly fetchPackageMetaData   code: 'ENOENT',
+20 silly fetchPackageMetaData   syscall: 'open',
+20 silly fetchPackageMetaData   path: 'C:\\Users\\Ursya\\Desktop\\finalProject\\—save-dev' }
+21 verbose request uri https://registry.npmjs.org/grunt
+22 verbose request no auth needed
+23 info attempt registry request try #1 at 16:36:25
+24 verbose request id 13b0f3838f5af864
+25 verbose etag "3Q9GS3FROG27WIQ8LLSR4SGOP"
+26 http request GET https://registry.npmjs.org/grunt
+27 info retry will retry, error on last attempt: TypeError: The header content contains invalid characters
+28 info attempt registry request try #2 at 16:36:35
+29 verbose etag "3Q9GS3FROG27WIQ8LLSR4SGOP"
+30 http request GET https://registry.npmjs.org/grunt
+31 info retry will retry, error on last attempt: TypeError: The header content contains invalid characters
+32 info attempt registry request try #3 at 16:37:35
+33 verbose etag "3Q9GS3FROG27WIQ8LLSR4SGOP"
+34 http request GET https://registry.npmjs.org/grunt
+35 silly get cb [ 304, undefined ]
+36 verbose etag https://registry.npmjs.org/grunt from cache
+37 verbose get saving grunt to C:\Users\Ursya\AppData\Roaming\npm-cache\registry.npmjs.org\grunt\.cache.json
+38 verbose correctMkdir C:\Users\Ursya\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+39 silly rollbackFailedOptional Starting
+40 silly rollbackFailedOptional Finishing
+41 silly runTopLevelLifecycles Starting
+42 silly runTopLevelLifecycles Finishing
+43 silly install printInstalled
+44 verbose stack Error: ENOENT: no such file or directory, open 'C:\Users\Ursya\Desktop\finalProject\—save-dev'
+44 verbose stack     at Error (native)
+45 verbose cwd C:\Users\Ursya\Desktop\finalProject\tools
+46 error Windows_NT 6.1.7601
+47 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "grunt" "—save-dev"
+48 error node v6.3.1
+49 error npm  v3.10.3
+50 error path C:\Users\Ursya\Desktop\finalProject\—save-dev
+51 error code ENOENT
+52 error errno -4058
+53 error syscall open
+54 error enoent ENOENT: no such file or directory, open 'C:\Users\Ursya\Desktop\finalProject\—save-dev'
+55 error enoent ENOENT: no such file or directory, open 'C:\Users\Ursya\Desktop\finalProject\—save-dev'
+55 error enoent This is most likely not a problem with npm itself
+55 error enoent and is related to npm not being able to find a file.
+56 verbose exit [ -4058, true ]
